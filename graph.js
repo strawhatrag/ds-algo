@@ -1,31 +1,24 @@
 class Graph {
   constructor() {
     this.numberOfNodes = 0;
-    this.adjacentLists = {};
+    this.adjacentLists = new Map();
   }
 
   addVertex(node) {
-    if (!this.adjacentLists[node]) {
-      this.adjacentLists[node] = [];
+    if (!this.adjacentLists.has(node)) {
+      this.adjacentLists.set(node, []);
     }
   }
 
   addEdge(node1, node2) {
-    this.adjacentLists[node1].push(node2);
-    this.adjacentLists[node2].push(node1);
+    this.adjacentLists.get(node1).push(node2);
+    this.adjacentLists.get(node2).push(node1);
   }
 
   showConnections() {
-    const allNodes = Object.keys(this.adjacentLists);
-    for (let node of allNodes) {
-      let nodeConnections = this.adjacentLists[node];
-      let connections = "";
-      let vertex;
-
-      for (vertex of nodeConnections) {
-        connections += vertex + " ";
-      }
-      console.log(node + "-->" + connections);
+    for (const [node, nodeConnections] of this.adjacentLists.entries()) {
+      let connections = nodeConnections.join(" ");
+      console.log(node + " --> " + connections);
     }
   }
 }
