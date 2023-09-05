@@ -14,3 +14,14 @@ function fibonacciRecursive(n) {
 }
 
 console.log(fibonacciRecursive(10));
+
+//Implement a function that reverses a string using iteration...and then recursion!
+function reverseStringRecursive(str) {
+  if (str === "") {
+    return str;
+  }
+  console.log(str.substr(1) + str[0]);
+  return reverseStringRecursive(str.substr(1)) + str[0];
+}
+
+console.log(reverseStringRecursive("yoyo mastery")); // 'yretsam oyoy'
